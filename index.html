@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Accessible Sound</title>
+		<style>
+			body { font-size:0; color:transparent; transition: all .5s ease;}
+			#note { }
+			.droptarget { background-color: #348781}
+			div.confident { }
+			div.vague { }
+			#note { }
+
+			#detector { }
+			#output { }
+			#flat { display: none; }
+			#sharp { display: none; }
+			.flat #flat { }
+			.sharp #sharp { }
+		</style>
+	</head>
+	<body>
+		<script src="js/pitchdetect.js"></script>
+
+		<p>
+			<button style="display:none;" onclick="this.innerText = togglePlayback()">use demo audio</button>
+			<button onclick="toggleLiveInput()">start</button>
+			<button onclick="toggleOscillator()">fix</button>
+			<!--<button onclick="updatePitch(0);">sample</button>-->
+		</p>
+
+		<div id="detector" class="vague">
+			<div class="pitch"><span id="pitch"></span></div>
+			<div class="note"><span id="note"></span></div>
+			<canvas id="output" width=300 height=42></canvas>
+			<div id="detune"><span id="detune_amt"></span><span id="flat">cents &#9837;</span><span id="sharp">cents &#9839;</span></div>
+		</div>
+
+		<!-- just used for debugging
+		<canvas id="waveform" width="512" height="256"></canvas>
+		-->
+
+		<script type="text/javascript">
+
+			var _gaq = _gaq || [];
+			_gaq.push(['_setAccount', 'UA-35593052-1']);
+			_gaq.push(['_trackPageview']);
+
+			(function() {
+				var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+				ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+				var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+			})();
+		</script>
+	</body>
+</html>
