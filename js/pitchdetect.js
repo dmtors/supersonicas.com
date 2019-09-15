@@ -119,30 +119,27 @@ function gotStream(stream) {
     updatePitch();
 }
 
-function toggleOscillator() {
-    if (isPlaying) {
-        //stop playing and return
-        sourceNode.stop( 0 );
-        sourceNode = null;
-        analyser = null;
-        isPlaying = false;
-		if (!window.cancelAnimationFrame)
-			window.cancelAnimationFrame = window.webkitCancelAnimationFrame;
-        window.cancelAnimationFrame( rafID );
-        return "play oscillator";
-    }
-    sourceNode = audioContext.createOscillator();
+function stopPlayingOscillator () {
+	sourceNode.stop( 0 );
+	sourceNode = null;
+	analyser = null;
+	isPlaying = false;
+	if (!window.cancelAnimationFrame)
+		window.cancelAnimationFrame = window.webkitCancelAnimationFrame;
+	window.cancelAnimationFrame( rafID );
+}
 
-    analyser = audioContext.createAnalyser();
-    analyser.fftSize = 2048;
-    sourceNode.connect( analyser );
-    analyser.connect( audioContext.destination );
-    sourceNode.start(0);
-    isPlaying = true;
-    isLiveInput = false;
-    updatePitch();
-
-    return "stop";
+function startOscillator () {
+	sourceNode = audioContext.createOscillator();
+	analyser = audioContext.createAnalyser();
+	analyser.fftSize = 2048;
+	sourceNode.connect( analyser );
+	analyser.connect( audioContext.destination );
+	sourceNode.start(0);
+	sourceNode.stop()
+	isPlaying = true;
+	isLiveInput = false;
+	updatePitch();
 }
 
 function toggleLiveInput() {
@@ -168,6 +165,20 @@ function toggleLiveInput() {
                 "optional": []
             },
         }, gotStream);
+
+
+    	startOscillator()
+
+		analyser = audioContext.createAnalyser();
+	    analyser.fftSize = 2048;
+	    sourceNode.connect( analyser );
+	    analyser.connect( audioContext.destination );
+	    //sourceNode.start(0);
+	    isPlaying = true;
+	    isLiveInput = false;
+	    updatePitch();
+
+	    return "stop";
 }
 
 function togglePlayback() {

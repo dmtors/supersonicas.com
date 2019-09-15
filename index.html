@@ -20,11 +20,14 @@
 	</head>
 	<body>
 		<script src="js/pitchdetect.js"></script>
+		<script>
+
+		</script>
 
 		<p>
 			<button style="display:none;" onclick="this.innerText = togglePlayback()">use demo audio</button>
 			<button onclick="toggleLiveInput()">start</button>
-			<button onclick="toggleOscillator()">fix</button>
+			<!-- <button onclick="toggleOscillator()">fix</button> -->
 			<!--<button onclick="updatePitch(0);">sample</button>-->
 		</p>
 
@@ -38,18 +41,5 @@
 		<!-- just used for debugging
 		<canvas id="waveform" width="512" height="256"></canvas>
 		-->
-
-		<script type="text/javascript">
-
-			var _gaq = _gaq || [];
-			_gaq.push(['_setAccount', 'UA-35593052-1']);
-			_gaq.push(['_trackPageview']);
-
-			(function() {
-				var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-				ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-				var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-			})();
-		</script>
 	</body>
 </html>
