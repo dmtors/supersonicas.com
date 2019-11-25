@@ -1,9 +1,11 @@
 <!doctype html>
 <html>
 	<head>
-		<title>Accessible Sound</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<title>See Sound</title>
 		<style>
-			body { font-size:0; color:transparent; transition: all .5s ease;}
+			body { font-family: sans-serif; font-size: 14px; color: #333; transition: all 1s ease;}
 			#note { }
 			.droptarget { background-color: #348781}
 			div.confident { }
@@ -12,8 +14,8 @@
 
 			#detector { }
 			#output { }
-			#flat { display: none; }
-			#sharp { display: none; }
+			#flat { }
+			#sharp { }
 			.flat #flat { }
 			.sharp #sharp { }
 		</style>
@@ -24,22 +26,25 @@
 
 		</script>
 
-		<p>
-			<button style="display:none;" onclick="this.innerText = togglePlayback()">use demo audio</button>
-			<button onclick="toggleLiveInput()">start</button>
-			<!-- <button onclick="toggleOscillator()">fix</button> -->
-			<!--<button onclick="updatePitch(0);">sample</button>-->
+		<p style="max-width:400px;">
+			Welcome to See Sound. The background color of this page will change according to the coorelation to frequencies of chakras. (Requires allowing your browser to use the microphone. Nothing is recorded. To stop, reload or close page.)
+			</br></br>
+			<button onclick="toggleLiveInput()">Start Seeing Sound</button>
 		</p>
 
 		<div id="detector" class="vague">
-			<div class="pitch"><span id="pitch"></span></div>
-			<div class="note"><span id="note"></span></div>
+			Frequency: <div class="pitch"><span id="pitch"></span></div>
+			</br></br>
+			Note: <div class="note"><span id="note"></span></div>
 			<canvas id="output" width=300 height=42></canvas>
-			<div id="detune"><span id="detune_amt"></span><span id="flat">cents &#9837;</span><span id="sharp">cents &#9839;</span></div>
+			<div id="detune"><span id="detune_amt"></span>
+				<span id="flat">cents &#9837;</span>
+				<!-- </br></br>
+				<span id="sharp">cents &#9839;</span> -->
+			</div>
 		</div>
 
-		<!-- just used for debugging
 		<canvas id="waveform" width="512" height="256"></canvas>
-		-->
+
 	</body>
 </html>
