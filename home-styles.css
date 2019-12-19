@@ -29,6 +29,7 @@ label {
 
 button {
     font-weight: 700;
+    margin: 2px 0;
 }
 
 button:hover, label:hover, input:hover {

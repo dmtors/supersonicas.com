@@ -11,7 +11,7 @@ body {
 #color {
     width: calc(100% - 30px);
     height: calc(100vh - 10px);
-    background-color: blue;
+    background-color: #40C0AD;
     padding: 5px 15px;
 }
 
@@ -28,6 +28,7 @@ span {
 
 button {
     font-weight: 700;
+    margin: 2px 0;
 }
 
 button:hover {
