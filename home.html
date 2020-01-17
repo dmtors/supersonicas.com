@@ -23,13 +23,13 @@
     <h1>Supersonicas</h1>
     <h6><i>an experiment exploring visual sound comprehension</i></h6>
     <form>
-        <label><input type="checkbox">Show sound details</input></label>
+        <label><input id="sound-details" type="checkbox">Show sound details</input></label>
         </br></br>
-        <button aria-label="Chromesthesia" href="">Chromesthesia</button>
-        <button aria-label="Emotion" href="">Emotion</button>
-        <button aria-label="Chakras" href="">Chakras</button>
-        <button aria-label="Adolescence" href="">Adolescence</button>
-        <button aria-label="Monochromacy" href="">Monochromacy</button>
+        <button class="pattern-button" aria-label="Chromesthesia" href="">Chromesthesia</button>
+        <button class="pattern-button" aria-label="Emotion" href="">Emotion</button>
+        <button class="pattern-button" aria-label="Chakras" href="">Chakras</button>
+        <button class="pattern-button" aria-label="Adolescence" href="">Adolescence</button>
+        <button class="pattern-button" aria-label="Monochromacy" href="">Monochromacy</button>
     </form>
     </br>
     <h5>How it works:</h5>
@@ -48,5 +48,12 @@
 </div>
 
 </body>
-
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script>
+    $(".pattern-button").click(function(e) {
+        var detailsChecked = $("#sound-details")[0].checked;
+        location.href = "./sound.html?pattern=" + e.target.textContent.toLowerCase() + "&details=" + detailsChecked;
+        e.preventDefault();
+    });
+</script>
 </html>

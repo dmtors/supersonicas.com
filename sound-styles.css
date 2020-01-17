@@ -8,10 +8,9 @@ body {
     margin: 0;
 }
 
-#color {
+#details-view {
     width: calc(100% - 30px);
     height: calc(100vh - 10px);
-    background-color: #40C0AD;
     padding: 5px 15px;
 }
 

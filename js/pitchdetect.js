@@ -39,7 +39,7 @@ var detectorElem,
 	detuneElem,
 	detuneAmount;
 
-window.onload = function() {
+function initPitchDetect() {
 	audioContext = new AudioContext();
 	MAX_SIZE = Math.max(4,Math.floor(audioContext.sampleRate/5000));	// corresponds to a 5kHz signal
 	var request = new XMLHttpRequest();
@@ -165,10 +165,7 @@ function toggleLiveInput() {
                 "optional": []
             },
         }, gotStream);
-
-
-    	startOscillator()
-
+	   	startOscillator()
 		analyser = audioContext.createAnalyser();
 	    analyser.fftSize = 2048;
 	    sourceNode.connect( analyser );
@@ -385,7 +382,7 @@ function updatePitch( time ) {
 	 	pitchElem.innerText = Math.round( pitch ) ;
 	 	var note =  noteFromPitch( pitch );
 		noteElem.innerHTML = noteStrings[note%12];
-		var color = noteStringMap[noteElem.innerHTML];
+		var color = window.Config.currentPattern[noteElem.innerHTML];
 		changeBackgroundColor( color );
 		var detune = centsOffFromPitch( pitch, note );
 		if (detune == 0 ) {
