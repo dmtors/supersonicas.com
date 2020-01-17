@@ -16,16 +16,6 @@
 
         gtag('config', 'UA-154332648-1');
     </script>
-    <style>
-        #custom-handle {
-            width: 3em;
-            height: 1.6em;
-            top: 50%;
-            margin-top: -.8em;
-            text-align: center;
-            line-height: 1.6em;
-          }
-    </style>
 </head>
 
 <body>
@@ -40,42 +30,46 @@
         <button id="adolescence-button" class="pattern-button" aria-label="Adolescence">Adolescence</button>
         <button id="monochromacy-button" class="pattern-button" aria-label="Monochromacy">Monochromacy</button>
 
+        </br></br>
+        <button id="exit-button" aria-label="Exit">Exit</button>
+
         <button onclick="toggleLiveInput()">Start Color System</button>
-        <!-- <p>dB: <span>0</span></p>
-        <p>Frequency: <span>•</span></p>
-        <p>Note: <span>•</span></p>
-        <p>Cents ♭: <span>•</span></p> -->
-        <div id="detector" class="vague">
-            Frequency: <div class="pitch"><span id="pitch"></span></div>
-            </br></br>
-            Note: <div class="note"><span id="note"></span></div>
-            <canvas id="output" width=300 height=42></canvas>
-            <div id="detune"><span id="detune_amt"></span>
-                <span id="flat">cents &#9837;</span>
-                <!-- </br></br>
-                <span id="sharp">cents &#9839;</span> -->
+
+        <div id="noise-details">
+            <!-- <p>dB: <span>0</span></p>
+            <p>Frequency: <span>•</span></p>
+            <p>Note: <span>•</span></p>
+            <p>Cents ♭: <span>•</span></p> -->
+            <div id="detector" class="vague">
+                Frequency: <div class="pitch"><span id="pitch"></span></div>
+                </br></br>
+                Note: <div class="note"><span id="note"></span></div>
+                <canvas id="output" width=300 height=42></canvas>
+                <div id="detune"><span id="detune_amt"></span>
+                    <span id="flat">cents &#9837;</span>
+                    <!-- </br></br>
+                    <span id="sharp">cents &#9839;</span> -->
+                </div>
+            </div>
+
+            </br>
+            <!-- <p>Waveform:</p>
+            <canvas id="waveform" width="512" height="256" transform="scale(0.5)"></canvas>
+            </br></br> -->
+            <button id="tone-generator" aria-label="Play Tone Generator" href="">Play Tone Generator</button>
+            </br></br></br></br>
+            <!-- <input type="range" id="tone-slider" min="40" max="1500" step="1" value="230"/> -->
+            <div id="tone-slider">
+                <div id="custom-handle" class="ui-slider-handle"></div>
             </div>
         </div>
 
-        <p>dB: <span>0</span></p>
-        </br>
-        <button id="tone-generator" aria-label="Play Tone Generator" href="">Play Tone Generator</button>
-        </br></br>
-        <!-- <input type="range" id="tone-slider" min="40" max="1500" step="1" value="230"/> -->
-        <div id="tone-slider">
-            <div id="custom-handle" class="ui-slider-handle"></div>
-        </div>
-        </br></br>
-        <p>Waveform:</p>
-        <canvas id="waveform" width="512" height="256"></canvas>
-        </br></br>
-        <button id="exit-button" aria-label="Exit">Exit</button>
     </div>
 </div>
 
 </body>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script src="https://code.jquery.com/ui/jquery-ui-git.js"></script> 
+<script src="https://code.jquery.com/ui/jquery-ui-git.js"></script>
 <script src="js/pitchdetect.js"></script>
 <script src="js/tone-generator.js"></script>
 <script>
@@ -109,8 +103,8 @@
     }
 
     function updateDetailsView() {
-        window.Config.hideDetails ? 
-            $("#details-view").first().hide(): 
+        window.Config.hideDetails ?
+            $("#details-view").first().hide():
             $("#details-view").first().show();
     }
 
@@ -129,7 +123,7 @@
             var value = $("#tone-slider").slider("option",'value');
             window.ToneGenerator.togglePlay(value);
         });
-    }    
+    }
 
     function bindExitButtonClick() {
         $("#exit-button").click(function(e) {
@@ -143,8 +137,8 @@
         var handle = $( "#custom-handle" );
         $("#tone-slider").slider({
             min: 40,
-            max: 1500,
-            value: 230,
+            max: 648,
+            value: 80,
             step: 1,
             create: function() {
                 handle.text( $( this ).slider( "value" ) );
@@ -165,7 +159,7 @@
             }
         });
     }
-        
+
     function getURLParam(param) {
         return (new URLSearchParams(window.location.search)).get(param)
     }
