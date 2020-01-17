@@ -41,6 +41,10 @@
         <button id="monochromacy-button" class="pattern-button" aria-label="Monochromacy">Monochromacy</button>
 
         <button onclick="toggleLiveInput()">Start Color System</button>
+        <!-- <p>dB: <span>0</span></p>
+        <p>Frequency: <span>•</span></p>
+        <p>Note: <span>•</span></p>
+        <p>Cents ♭: <span>•</span></p> -->
         <div id="detector" class="vague">
             Frequency: <div class="pitch"><span id="pitch"></span></div>
             </br></br>
@@ -65,13 +69,13 @@
         <p>Waveform:</p>
         <canvas id="waveform" width="512" height="256"></canvas>
         </br></br>
-        <button id="exit-button" aria-label="Exit" href="">Exit</button>
+        <button id="exit-button" aria-label="Exit">Exit</button>
     </div>
 </div>
 
 </body>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script src="http://code.jquery.com/ui/jquery-ui-git.js"></script> 
+<script src="https://code.jquery.com/ui/jquery-ui-git.js"></script> 
 <script src="js/pitchdetect.js"></script>
 <script src="js/tone-generator.js"></script>
 <script>
@@ -129,6 +133,7 @@
 
     function bindExitButtonClick() {
         $("#exit-button").click(function(e) {
+            window.location = "/home.index";
             window.Config.hideDetails = true;
             updateDetailsView();
         });
@@ -155,9 +160,8 @@
 
     function bindSpaceKey() {
         $('body').keyup(function(e) {
-            if(e.keyCode == 32) {
-                window.Config.hideDetails = !window.Config.hideDetails;
-                updateDetailsView();
+            if(window.Config.hideDetails) {
+                window.location = "/home.html";
             }
         });
     }
