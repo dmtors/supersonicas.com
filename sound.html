@@ -29,33 +29,32 @@
         </br>
         <button id="adolescence-button" class="pattern-button" aria-label="Adolescence">Adolescence</button>
         <button id="monochromacy-button" class="pattern-button" aria-label="Monochromacy">Monochromacy</button>
+        <button onclick="toggleLiveInput()">Start Color System</button>
 
         </br></br>
         <button id="exit-button" aria-label="Exit">Exit</button>
 
-        <button onclick="toggleLiveInput()">Start Color System</button>
-
         <div id="noise-details">
-            <!-- <p>dB: <span>0</span></p>
-            <p>Frequency: <span>•</span></p>
-            <p>Note: <span>•</span></p>
-            <p>Cents ♭: <span>•</span></p> -->
-            <div id="detector" class="vague">
+            <p>dB: <span id="db">0</span></p>
+            <p>Frequency: <span id="freq">•</span></p>
+            <p>Note: <span id="note">•</span></p>
+            <p>Cents ♭: <span id="cents">•</span></p>
+            <!-- <div id="detector" class="vague">
                 Frequency: <div class="pitch"><span id="pitch"></span></div>
                 </br></br>
                 Note: <div class="note"><span id="note"></span></div>
                 <canvas id="output" width=300 height=42></canvas>
                 <div id="detune"><span id="detune_amt"></span>
                     <span id="flat">cents &#9837;</span>
-                    <!-- </br></br>
-                    <span id="sharp">cents &#9839;</span> -->
+                    </br></br>
+                    <span id="sharp">cents &#9839;</span>
                 </div>
-            </div>
+            </div> -->
 
             </br>
-            <!-- <p>Waveform:</p>
+            <p>Waveform:</p>
             <canvas id="waveform" width="512" height="256" transform="scale(0.5)"></canvas>
-            </br></br> -->
+            </br></br>
             <button id="tone-generator" aria-label="Play Tone Generator" href="">Play Tone Generator</button>
             </br></br></br></br>
             <!-- <input type="range" id="tone-slider" min="40" max="1500" step="1" value="230"/> -->
@@ -74,10 +73,10 @@
 <script src="js/tone-generator.js"></script>
 <script>
     window.onload = function() {
-        initPitchDetect();
+        initPitchDetect(updateValues);
         initConfig();
-        applyConfig();
         loadPatterns();
+        applyConfig();
         bindPatternButtonClicks();
         bindSlider();
         bindExitButtonClick();
@@ -87,6 +86,7 @@
     function initConfig() {
         window.Config = {};
         window.Config.selectedPattern = getURLParam('pattern') || "chromesthesia";
+        $("#" + window.Config.selectedPattern + "-button").prop("disabled", true);
         window.Config.hideDetails = getURLParam('details') == "false";
     }
 
@@ -127,7 +127,7 @@
 
     function bindExitButtonClick() {
         $("#exit-button").click(function(e) {
-            window.location = "/home.index";
+            window.location = "/home.html";
             window.Config.hideDetails = true;
             updateDetailsView();
         });
@@ -157,11 +157,26 @@
             if(window.Config.hideDetails) {
                 window.location = "/home.html";
             }
+
+            if(e.keyCode == 32) {
+                $("#tone-generator").click();
+            }
         });
     }
 
     function getURLParam(param) {
         return (new URLSearchParams(window.location.search)).get(param)
+    }
+
+    function updateValues() {
+        $("#freq").html(window.PitchDetect.pitch || "•");
+        $("#note").html(window.PitchDetect.noteLetter || "•");
+        $("#cents").html(window.PitchDetect.detune || "•");
+        // $("#db").html(window.PitchDetect.pitch || "•");
+
+        var color = window.Config.currentPattern[window.PitchDetect.noteLetter];
+        document.body.style.backgroundColor = color;
+
     }
 </script>
 </html>
