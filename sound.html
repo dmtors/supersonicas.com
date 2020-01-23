@@ -19,20 +19,30 @@
 </head>
 
 <body>
-<button id="start-button" onclick="displayAndPlay()">Start Color System</button>
+    <div id="start-screen">
+        <h5>Keyboard shortcuts:</h5>
+        <ul>
+            <li><span>'esc'</span> = exit</li>
+            <li><span>'spacebar'</span> = play/pause tone generator</li>
+            <li><span>'return'</span> = start/stop color system</li>
+            <li><span>'d'</span> = show/hide noise details</li>
+            <li><span>'up/right arrow'</span> = increase tone</li>
+            <li><span>'down/left arrow'</span> = decrease tone</li>
+        </ul>
+        </br></br>
+        <button id="start-button" onclick="displayAndPlay()">Start Color System</button>
+        </br></br>
+        <p><i>*The browser will access your device microphone to listen to audio and convert the sound to color. Nothing is ever recorded or stored by Supersonicas.<p></i>
+    </div>
+
 <div>
     <div id="details-view" style="display:none">
-        <h1>Supersonicas</h1>
-        <button id="chromesthesia-button" class="pattern-button" aria-label="Chromesthesia">Chromesthesia</button>
-        <button id="emotion-button" class="pattern-button" aria-label="Emotion">Emotion</button>
-        <button id="chakras-button" class="pattern-button" aria-label="Chakras">Chakras</button>
+        <h1><a aria-label="Return to home page" href="https://supersonicas.com">Supersonicas</a></h1>
         </br>
-        <button id="adolescence-button" class="pattern-button" aria-label="Adolescence">Adolescence</button>
-        <button id="monochromacy-button" class="pattern-button" aria-label="Monochromacy">Monochromacy</button>
-        
+        <button id="chromesthesia-button" class="pattern-button" aria-label="Chromesthesia">Chromesthesia</button><button id="emotion-button" class="pattern-button" aria-label="Emotion">Emotion</button><button id="chakras-button" class="pattern-button" aria-label="Chakras">Chakras</button><button id="adolescence-button" class="pattern-button" aria-label="Adolescence">Adolescence</button><button id="monochromacy-button" class="pattern-button" aria-label="Monochromacy">Monochromacy</button>
 
-        </br></br>
-        <button id="exit-button" aria-label="Exit">Exit</button>
+        <!-- </br></br>
+        <button id="exit-button" aria-label="Exit">Exit</button> -->
 
         <div id="noise-details">
             <p>dB: <span id="db">0</span></p>
@@ -52,9 +62,9 @@
             </div> -->
 
             </br>
-            <p>Waveform:</p>
+            <!-- <p>Waveform:</p> -->
             <!-- <canvas id="waveform" width="512" height="256" transform="scale(0.5)"></canvas> -->
-            </br></br>
+            <!-- </br></br> -->
             <button id="tone-generator" aria-label="Play Tone Generator" href="">Play Tone Generator</button>
             </br></br></br></br>
             <!-- <input type="range" id="tone-slider" min="40" max="1500" step="1" value="230"/> -->
@@ -136,8 +146,8 @@
     function bindSlider() {
         var handle = $( "#custom-handle" );
         $("#tone-slider").slider({
-            min: 40,
-            max: 648,
+            min: 0,
+            max: 880,
             value: 80,
             step: 1,
             create: function() {
@@ -181,7 +191,7 @@
 
     function displayAndPlay() {
         $("#details-view").show();
-        $("#start-button").hide();
+        $("#start-screen").hide();
         toggleLiveInput();
     }
 </script>

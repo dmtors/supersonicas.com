@@ -4,14 +4,6 @@ body {
     font-size: 11px;
     padding: 25px;
     margin: 0;
-}
-
-#light {
-    background-color: white;
-    color: black;
-}
-
-#dark {
     background-color: black;
     color: white;
 }
@@ -29,15 +21,22 @@ label {
 
 button {
     font-weight: 700;
-    margin: 2px 0;
+    margin: 2px;
+    padding: 8px;
+    background-color: white;
+    border: none;
+    border-radius: 2px;
+    display: inline-block;
 }
 
-button:hover, label:hover, input:hover {
+button:hover {
     cursor: pointer;
+    background-color: #b2b2b2;
 }
 
 button:active {
     color: white;
+    background-color: #0c66ff;
 }
 
 h1 {
@@ -65,4 +64,12 @@ p {
 ul {
     text-align: left;
     font-size: 11px;
+}
+
+li {
+    margin: 4px 0;
+}
+
+a {
+    color: white;
 }

@@ -14,25 +14,37 @@ body {
     padding: 32px;
 }
 
-h1 {
+h1, a {
     font-size: 11px;
     text-transform: uppercase;
     letter-spacing: 7px;
     font-weight: 600;
+    text-decoration: none;
+    color: white;
+}
+
+h5 {
+    font-size: 13px;
+    font-weight: 600;
+    text-align: center;
 }
 
 span {
     font-weight: 700;
 }
 
+li {
+    margin: 4px 0;
+}
+
 button {
     font-weight: 700;
-    margin: 2px 0;
+    margin: 4px 0;
     padding: 8px;
     background-color: white;
     border: none;
     border-radius: 2px;
-    display: inline-block;
+    display: block;
 }
 
 button:hover {
@@ -51,10 +63,32 @@ button:disabled, button:disabled:hover, button:disabled:active {
     background-color: rgba(255,255,255,.5);
 }
 
-/* #noise-details {
+#start-screen {
+    max-width: 272px;
+    width: 100%;
+    height: auto;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#start-button {
+    margin: 0 auto;
+}
+
+#noise-details {
     position: absolute;
-    bottom: 64px;
+    bottom: 48px;
     width: calc(100% - 64px);
+}
+
+/* @media only screen and (max-width: 599px) {
+    #noise-details {
+        position: relative;
+        bottom: 0;
+        width: calc(100%);
+    }
 } */
 
 #tone-slider {
