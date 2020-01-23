@@ -1,50 +1,59 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-	<head>
-		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-		<title>Supersonicas</title>
-		<style>
-			body { font-family: sans-serif; font-size: 14px; color: #333; transition: all 1s ease;}
-			#note { }
-			.droptarget { background-color: #348781}
-			div.confident { }
-			div.vague { }
-			#note { }
 
-			#detector { }
-			#output { }
-			#flat { }
-			#sharp { }
-			.flat #flat { }
-			.sharp #sharp { }
-		</style>
-	</head>
-	<body>
-		<script src="js/pitchdetect.js"></script>
-		<script>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="home-styles.css">
+    <title>Supersonicas</title>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-154332648-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
 
-		</script>
+        gtag('config', 'UA-154332648-1');
+    </script>
+</head>
 
-		<p style="max-width:400px;">
-			Welcome to Supersonicas. The background color of this page will change according to the coorelation to frequencies of chakras. (Requires allowing your browser to use the microphone. Nothing is recorded. To stop, reload or close page.)
-			</br></br>
-			<button onclick="toggleLiveInput()">Start Color System</button>
-		</p>
+<body id="light">
 
-		<div id="detector" class="vague">
-			Frequency: <div class="pitch"><span id="pitch"></span></div>
-			</br></br>
-			Note: <div class="note"><span id="note"></span></div>
-			<canvas id="output" width=300 height=42></canvas>
-			<div id="detune"><span id="detune_amt"></span>
-				<span id="flat">cents &#9837;</span>
-				<!-- </br></br>
-				<span id="sharp">cents &#9839;</span> -->
-			</div>
-		</div>
+<div>
+    <h1>Supersonicas</h1>
+    <h6><i>an experiment exploring visual sound comprehension</i></h6>
+    <form>
+        <label><input id="sound-details" type="checkbox">Show sound details</input></label>
+        </br></br>
+        <button class="pattern-button" aria-label="Chromesthesia" href="">Chromesthesia</button>
+        <button class="pattern-button" aria-label="Emotion" href="">Emotion</button>
+        <button class="pattern-button" aria-label="Chakras" href="">Chakras</button>
+        <button class="pattern-button" aria-label="Adolescence" href="">Adolescence</button>
+        <button class="pattern-button" aria-label="Monochromacy" href="">Monochromacy</button>
+    </form>
+    </br>
+    <h5>How it works:</h5>
+    <ul>
+        <li>Select 'Show sound details' if desired</li>
+        <li>Choose a color pattern</li>
+        <li>Page will change colors cooresponding to frequencies and volumes being heard by the device microphone</li>
+        <li>Nothing is ever recorded or stored</li>
+        <li>to exit color pattern without sound details showing, click or tap anywhere on the page, or press any key</li>
+    </ul>
+    </br>
+    <h5>About Supersonicas</h5>
+    <p>Supersonicas is an exploration to enable accessibility to sound through light and color, particularly for people experiencing hearing impairment. Like any form of art, there is not one defined interpretation, but an opportunity for each participant to experience something new or familiar in their own way. The color and brightness of light corresponds to frequencies being heard in the room and changes accordingly. The color patterns created are inspired by research conducted around Chromesthesia, emotion, chakras, adolescence, and monochromacy.</p>
+    <p>The color patterns created are inspired by research conducted around how the mind connects sound to color (through symptoms of Chromesthesia), how the heart connects sound to color (through feelings of emotion), how the body connects sound to color (through the energy of chakras), how a child connects sound to color (through adolescent experiences), and how someone experiencing color-blindness and Chromesthesia connects sound to color.</p>
+    <p>To learn more about the Supersonicas project, please reach out to the creator, Derek via <a href="mailto:derektorsani@gmail.com">email</a>.</p>
+</div>
 
-		<canvas id="waveform" width="512" height="256"></canvas>
-
-	</body>
+</body>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script>
+    $(".pattern-button").click(function(e) {
+        var detailsChecked = $("#sound-details")[0].checked;
+        location.href = "./sound.html?pattern=" + e.target.textContent.toLowerCase() + "&details=" + detailsChecked;
+        e.preventDefault();
+    });
+</script>
 </html>
