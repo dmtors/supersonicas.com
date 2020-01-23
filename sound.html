@@ -19,9 +19,9 @@
 </head>
 
 <body>
-
+<button id="start-button" onclick="displayAndPlay()">Start Color System</button>
 <div>
-    <div id="details-view">
+    <div id="details-view" style="display:none">
         <h1>Supersonicas</h1>
         <button id="chromesthesia-button" class="pattern-button" aria-label="Chromesthesia">Chromesthesia</button>
         <button id="emotion-button" class="pattern-button" aria-label="Emotion">Emotion</button>
@@ -29,7 +29,7 @@
         </br>
         <button id="adolescence-button" class="pattern-button" aria-label="Adolescence">Adolescence</button>
         <button id="monochromacy-button" class="pattern-button" aria-label="Monochromacy">Monochromacy</button>
-        <button onclick="toggleLiveInput()">Start Color System</button>
+        
 
         </br></br>
         <button id="exit-button" aria-label="Exit">Exit</button>
@@ -53,7 +53,7 @@
 
             </br>
             <p>Waveform:</p>
-            <canvas id="waveform" width="512" height="256" transform="scale(0.5)"></canvas>
+            <!-- <canvas id="waveform" width="512" height="256" transform="scale(0.5)"></canvas> -->
             </br></br>
             <button id="tone-generator" aria-label="Play Tone Generator" href="">Play Tone Generator</button>
             </br></br></br></br>
@@ -103,9 +103,9 @@
     }
 
     function updateDetailsView() {
-        window.Config.hideDetails ?
-            $("#details-view").first().hide():
-            $("#details-view").first().show();
+        // window.Config.hideDetails ?
+        //     $("#details-view").first().hide():
+        //     $("#details-view").first().show();
     }
 
     function bindPatternButtonClicks() {
@@ -177,6 +177,12 @@
         var color = window.Config.currentPattern[window.PitchDetect.noteLetter];
         document.body.style.backgroundColor = color;
 
+    }
+
+    function displayAndPlay() {
+        $("#details-view").show();
+        $("#start-button").hide();
+        toggleLiveInput();
     }
 </script>
 </html>
