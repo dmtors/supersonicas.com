@@ -8,6 +8,12 @@ body {
     color: white;
 }
 
+img {
+    width: 56px;
+    height: 56px;
+    border-radius: 100%;
+}
+
 div {
     margin: 0 auto;
     max-width: 296px;
@@ -44,11 +50,13 @@ h1 {
     text-transform: uppercase;
     letter-spacing: 7px;
     font-weight: 600;
+    margin-bottom: -12px;
 }
 
 h6 {
     font-size: 11px;
     font-weight: 600;
+    margin-bottom: 36px;
 }
 
 h5 {
