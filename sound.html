@@ -191,10 +191,17 @@
             switch(e.which) {
 
                 case 13: //enter
-                    toggleLiveInput();
-                    resetValues();
+                    if ($("#start-screen:hidden").length == 0) {
+                        toggleDisplay();
+                    } else {
+                        toggleLiveInput();
+                        resetValues();
+                    }
                 break;
                 case 27: // escape
+                    if ($("#start-screen:hidden").length == 1) {
+                        toggleLiveInput();
+                    }
                     toggleDisplay();
                 break;
 
@@ -261,7 +268,7 @@
 
     function createNoteColorPickers() {
         const pickr = Pickr.create({
-            el: '#custom-a',
+            // el: '#custom-a',
             theme: 'nano',
             swatches: null,
             components: {
