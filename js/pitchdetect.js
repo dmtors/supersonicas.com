@@ -85,6 +85,7 @@ function toggleLiveInput() {
 		if (!window.cancelAnimationFrame)
 			window.cancelAnimationFrame = window.webkitCancelAnimationFrame;
         window.cancelAnimationFrame( rafID );
+        return;
     }
     getUserMedia(
     	{
@@ -117,21 +118,6 @@ var buflen = 1024;
 var buf = new Float32Array( buflen );
 
 var noteStrings = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
-
-var noteStringMap = {
-	"C": '#EC472D',
-	"C#": '#EC5F2D',
-	"D": '#EC972D',
-	"D#": '#F6AB0B',
-	"E": '#F6D70B',
-	"F": '#40C070',
-	"F#": '#40C0AD',
-	"G": '#0080FF',
-	"G#": '#1369EB',
-	"A": '#204ADA',
-	"A#": '#5C22ED',
-	"B": '#9D32F5'
-}
 
 function noteFromPitch( frequency ) {
 	var noteNum = 12 * (Math.log( frequency / 440 )/Math.log(2) );
@@ -262,5 +248,7 @@ function updatePitch( time ) {
 		window.requestAnimationFrame = window.webkitRequestAnimationFrame;
 	rafID = window.requestAnimationFrame( updatePitch );
 
-	window.PitchDetect.pitchUpdateCallback()
+	if (isPlaying) {
+		window.PitchDetect.pitchUpdateCallback()
+	}
 }

@@ -30,7 +30,7 @@
             <li><span>'down/left arrow'</span> = decrease tone</li>
         </ul>
         </br></br>
-        <button style="display: block;" id="start-button" onclick="displayAndPlay()">Start Color System</button>
+        <button style="display: block;" id="start-button" onclick="toggleDisplay()">Start Color System</button>
         </br></br>
         <p><i>*The browser will access your device microphone to listen to audio and convert the sound to color. Nothing is ever recorded or stored by Supersonicas.<p></i>
     </div>
@@ -107,7 +107,7 @@
         bindPatternButtonClicks();
         bindSlider();
         bindExitButtonClick();
-        bindSpaceKey();
+        bindKeys();
     }
 
     function initConfig() {
@@ -168,25 +168,51 @@
             value: 80,
             step: 1,
             create: function() {
-                handle.text( $( this ).slider( "value" ) );
+                slide( $( this ).slider( "value" ) );
             },
             slide: function(event,ui) {
-                handle.text( ui.value );
-                if (window.ToneGenerator.isPlaying) {
-                    window.ToneGenerator.updateTone(ui.value);
-                }
+                slide(ui.value);
             }
         });
     }
 
-    function bindSpaceKey() {
-        $('body').keyup(function(e) {
-            if(window.Config.hideDetails) {
-                window.location = "/index.html";
-            }
+    function slide(value) {
+        $( "#custom-handle" ).text(value);
+        if (window.ToneGenerator.isPlaying) {
+            window.ToneGenerator.updateTone(value);
+        }
+    }
 
-            if(e.keyCode == 32) {
-                $("#tone-generator").click();
+    function bindKeys() {
+        var slider = $("#tone-slider");
+        $('body').keydown(function(e) {
+            switch(e.which) {
+
+                case 27: // escape
+                    toggleDisplay();
+                break;
+
+                case 37: // left
+                case 40: // down
+                    var newValue = slider.slider("value") - (e.shiftKey ? 5 : 1);
+                    slider.slider("value", newValue);
+                    slide(newValue);
+                break;
+
+                case 39: // right
+                case 38: // up
+                    var newValue = slider.slider("value") + (e.shiftKey ? 5 : 1);
+                    slider.slider("value", newValue);
+                    slide(newValue);
+                break;
+
+                case 32: // space
+                    $("#tone-generator").click();
+                break;
+
+                case 68: // 'd' key
+                    ($("#details-view:hidden").hide().length == 1) ? $("#details-view").show() : $("#details-view").hide();
+                break;
             }
         });
     }
@@ -202,14 +228,27 @@
         // $("#db").html(window.PitchDetect.pitch || "•");
 
         var color = window.Config.currentPattern[window.PitchDetect.noteLetter];
-        document.body.style.backgroundColor = color;
-
+        document.body.style.backgroundColor = color || "";
     }
 
-    function displayAndPlay() {
-        $("#details-view").show();
-        $("#start-screen").hide();
+    function toggleDisplay() {
+        var starting = $("#details-view:hidden").length == 1;
+        starting ? $("#details-view").show() : $("#details-view").hide();
+        starting ? $("#start-screen").hide() : $("#start-screen").show();
         toggleLiveInput();
+        if (starting == false) {
+            window.PitchDetect.pitch = null;
+            window.PitchDetect.noteLetter = null;
+            window.PitchDetect.detune = null;
+            updateValues();
+            $("#tone-slider").slider("value", 80);
+            slide(80);
+            $("#tone-generator").click();
+        }
+    }
+
+    function createNoteColorPickers() {
+        
     }
 </script>
 </html>
