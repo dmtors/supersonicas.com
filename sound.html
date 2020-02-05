@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css" rel="stylesheet">
     <link rel="stylesheet" href="css/sound-styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/nano.min.css"/> 
     <title>Supersonicas</title>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-154332648-1"></script>
@@ -96,6 +97,7 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://code.jquery.com/ui/jquery-ui-git.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.min.js"></script>
 <script src="js/pitchdetect.js"></script>
 <script src="js/tone-generator.js"></script>
 <script>
@@ -188,6 +190,10 @@
         $('body').keydown(function(e) {
             switch(e.which) {
 
+                case 13: //enter
+                    toggleLiveInput();
+                    resetValues();
+                break;
                 case 27: // escape
                     toggleDisplay();
                 break;
@@ -237,19 +243,56 @@
         starting ? $("#start-screen").hide() : $("#start-screen").show();
         toggleLiveInput();
         if (starting == false) {
-            window.PitchDetect.pitch = null;
-            window.PitchDetect.noteLetter = null;
-            window.PitchDetect.detune = null;
-            updateValues();
-            $("#tone-slider").slider("value", 80);
-            slide(80);
-            if (window.ToneGenerator.isPlaying) {
-                $("#tone-generator").click();
-            }
+            resetValues();
+        }
+    }
+
+    function resetValues() {
+        window.PitchDetect.pitch = null;
+        window.PitchDetect.noteLetter = null;
+        window.PitchDetect.detune = null;
+        updateValues();
+        $("#tone-slider").slider("value", 80);
+        slide(80);
+        if (window.ToneGenerator.isPlaying) {
+            $("#tone-generator").click();
         }
     }
 
     function createNoteColorPickers() {
+        const pickr = Pickr.create({
+            el: '#custom-a',
+            theme: 'nano',
+            swatches: null,
+            components: {
+
+        // Defines if the palette itself should be visible.
+        // Will be overwritten with true if preview, opacity or hue are true
+        palette: true,
+
+        preview: true, // Display comparison between previous state and new color
+        opacity: true, // Display opacity slider
+        hue: true,     // Display hue slider
+
+        // show or hide components on the bottom interaction bar.
+        interaction: {
+
+            // Buttons, if you disable one but use the format in default: or setColor() - set the representation-type too!
+            hex: false,  // Display 'input/output format as hex' button  (hexadecimal representation of the rgba value)
+            rgba: false, // Display 'input/output format as rgba' button (red green blue and alpha)
+            hsla: false, // Display 'input/output format as hsla' button (hue saturation lightness and alpha)
+            hsva: false, // Display 'input/output format as hsva' button (hue saturation value and alpha)
+            cmyk: false, // Display 'input/output format as cmyk' button (cyan mangenta yellow key )
+
+            input: false, // Display input/output textbox which shows the selected color value.
+                         // the format of the input is determined by defaultRepresentation,
+                         // and can be changed by the user with the buttons set by hex, rgba, hsla, etc (above).
+            cancel: false, // Display Cancel Button, resets the color to the previous state
+            clear: false, // Display Clear Button; same as cancel, but keeps the window open
+            save: false,  // Display Save Button,
+        },
+    },
+        })
 
     }
 </script>
