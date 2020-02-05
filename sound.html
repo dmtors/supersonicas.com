@@ -243,12 +243,14 @@
             updateValues();
             $("#tone-slider").slider("value", 80);
             slide(80);
-            $("#tone-generator").click();
+            if (window.ToneGenerator.isPlaying) {
+                $("#tone-generator").click();
+            }
         }
     }
 
     function createNoteColorPickers() {
-        
+
     }
 </script>
 </html>
