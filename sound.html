@@ -98,11 +98,16 @@
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://code.jquery.com/ui/jquery-ui-git.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.min.js"></script>
-<script src="js/pitchdetect.js"></script>
+<script src="https://unpkg.com/sweetalert@2.1.2/dist/sweetalert.min.js"></script>
+<!-- <script src="jquery.ui.touch-punch.min.js"></script> -->
 <script src="js/tone-generator.js"></script>
+
+<script src="js/tuner/aubio.js"></script>
+<script src="js/tuner/tuner.js"></script>
+<script src="js/tuner/app.js"></script>
 <script>
     window.onload = function() {
-        initPitchDetect(updateValues);
+        initTuner();
         initConfig();
         loadPatterns();
         applyConfig();
@@ -110,6 +115,10 @@
         bindSlider();
         bindExitButtonClick();
         bindKeys();
+    }
+
+    function initTuner() {
+        window.tuner = new Application(updateValues);
     }
 
     function initConfig() {
@@ -194,13 +203,13 @@
                     if ($("#start-screen:hidden").length == 0) {
                         toggleDisplay();
                     } else {
-                        toggleLiveInput();
+                        tuner.start();
                         resetValues();
                     }
                 break;
                 case 27: // escape
                     if ($("#start-screen:hidden").length == 1) {
-                        toggleLiveInput();
+                        tuner.start();
                     }
                     toggleDisplay();
                 break;
@@ -234,13 +243,14 @@
         return (new URLSearchParams(window.location.search)).get(param)
     }
 
-    function updateValues() {
-        $("#freq").html(window.PitchDetect.pitch || "•");
-        $("#note").html(window.PitchDetect.noteLetter || "•");
-        $("#cents").html(window.PitchDetect.detune || "•");
+    function updateValues(note) {
+        console.log(note);
+        $("#freq").html(Math.round(note.frequency) || "•");
+        $("#note").html(note.name || "•");
+        $("#cents").html(note.cents || "•");
         // $("#db").html(window.PitchDetect.pitch || "•");
 
-        var color = window.Config.currentPattern[window.PitchDetect.noteLetter];
+        var color = window.Config.currentPattern[note.name];
         document.body.style.backgroundColor = color || "";
     }
 
@@ -248,16 +258,13 @@
         var starting = $("#details-view:hidden").length == 1;
         starting ? $("#details-view").show() : $("#details-view").hide();
         starting ? $("#start-screen").hide() : $("#start-screen").show();
-        toggleLiveInput();
+        tuner.start();
         if (starting == false) {
             resetValues();
         }
     }
 
     function resetValues() {
-        window.PitchDetect.pitch = null;
-        window.PitchDetect.noteLetter = null;
-        window.PitchDetect.detune = null;
         updateValues();
         $("#tone-slider").slider("value", 80);
         slide(80);
