@@ -15,4 +15,12 @@ Application.prototype.start = function(cb) {
   }
     self.tuner.init()
     self.frequencyData = new Uint8Array(self.tuner.analyser.frequencyBinCount)
-}  
+}
+
+Application.prototype.stop = function() {
+  const self = this
+
+  this.tuner.onNoteDetected = function(note) {
+    
+  }
+}

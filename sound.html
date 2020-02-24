@@ -200,11 +200,11 @@
             switch(e.which) {
 
                 case 13: //enter
-                    if ($("#start-screen:hidden").length == 0) {
-                        toggleDisplay();
+                    if ($("#start-screen:hidden").length == 1) {
+                        tuner.stop();
+                        updateValues();
                     } else {
                         tuner.start();
-                        resetValues();
                     }
                 break;
                 case 27: // escape
@@ -244,28 +244,30 @@
     }
 
     function updateValues(note) {
-        console.log(note);
+        note = note || {};
         $("#freq").html(Math.round(note.frequency) || "•");
         $("#note").html(note.name || "•");
         $("#cents").html(note.cents || "•");
         // $("#db").html(window.PitchDetect.pitch || "•");
 
-        var color = window.Config.currentPattern[note.name];
-        document.body.style.backgroundColor = color || "";
+        var color = note.name ? window.Config.currentPattern[note.name] : "black";
+        document.body.style.backgroundColor = color;
     }
 
     function toggleDisplay() {
         var starting = $("#details-view:hidden").length == 1;
         starting ? $("#details-view").show() : $("#details-view").hide();
         starting ? $("#start-screen").hide() : $("#start-screen").show();
-        tuner.start();
         if (starting == false) {
+            tuner.stop();
+            updateValues();
             resetValues();
+        } else {
+            tuner.start();
         }
     }
 
     function resetValues() {
-        updateValues();
         $("#tone-slider").slider("value", 80);
         slide(80);
         if (window.ToneGenerator.isPlaying) {
