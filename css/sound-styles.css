@@ -91,11 +91,11 @@ button:disabled, button:disabled:hover, button:disabled:active {
     margin: 0 auto;
 }
 
-#noise-details {
+/* #noise-details {
     position: absolute;
     bottom: 48px;
     width: calc(100% - 64px);
-}
+} */
 
 @media only screen and (max-width: 767px) {
     #shortcuts {

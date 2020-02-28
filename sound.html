@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css" rel="stylesheet">
     <link rel="stylesheet" href="css/sound-styles.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/nano.min.css"/> 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/nano.min.css"/>
     <title>Supersonicas</title>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-154332648-1"></script>
@@ -24,11 +24,11 @@
         <h5>Keyboard shortcuts:</h5>
         <ul>
             <li><span>'esc'</span> = exit</li>
-            <li><span>'spacebar'</span> = play/pause tone generator</li>
             <li><span>'return'</span> = start/stop color system</li>
-            <li><span>'d'</span> = show/hide details</li>
+            <li><span>'space'</span> = show/hide details</li>
+            <!-- <li><span>'spacebar'</span> = play/pause tone generator</li>
             <li><span>'up/right arrow'</span> = increase tone</li>
-            <li><span>'down/left arrow'</span> = decrease tone</li>
+            <li><span>'down/left arrow'</span> = decrease tone</li> -->
         </ul>
         </br></br>
         <button style="display: block;" id="start-button" onclick="toggleDisplay()">Start Color System</button>
@@ -40,29 +40,14 @@
     <div id="details-view" style="display:none">
         <h1><a aria-label="Return to home page" href="https://supersonicas.com">Supersonicas</a></h1>
         </br>
-        <button id="chromesthesia-button" class="pattern-button" aria-label="Chromesthesia">Chromesthesia</button><button id="emotion-button" class="pattern-button" aria-label="Emotion">Emotion</button><button id="chakras-button" class="pattern-button" aria-label="Chakras">Chakras</button><button id="adolescence-button" class="pattern-button" aria-label="Adolescence">Adolescence</button><button id="monochromacy-button" class="pattern-button" aria-label="Monochromacy">Monochromacy</button><button id="custom-button" class="pattern-button" aria-label="Custom">Custom</button>
+        <button id="chromesthesia-button" class="pattern-button" aria-label="Chromesthesia">Chromesthesia</button><button id="emotion-button" class="pattern-button" aria-label="Emotion">Emotion</button><button id="chromotherapy-button" class="pattern-button" aria-label="Chromotherapy">Chromotherapy</button><button id="chakras-button" class="pattern-button" aria-label="Chakras">Chakras</button><button id="adolescence-button" class="pattern-button" aria-label="Adolescence">Adolescence</button><button id="monochromacy-button" class="pattern-button" aria-label="Monochromacy">Monochromacy</button><button id="custom-button" class="pattern-button" aria-label="Custom">Custom</button>
 
         <div id="custom-colors">
             <button aria-label="custom color for note A" id="custom-a">A</button><button aria-label="custom color for note A Sharp" id="custom-a#">A#</button><button aria-label="custom color for note B" id="custom-b">B</button><button aria-label="custom color for note C" id="custom-c">C</button><button aria-label="custom color for note C Sharp" id="custom-c#">C#</button><button aria-label="custom color for note D" id="custom-d">D</button><button aria-label="custom color for note D Sharp" id="custom-d#">D#</button><button aria-label="custom color for note E" id="custom-e">E</button><button aria-label="custom color for note F" id="custom-f">F</button><button aria-label="custom color for note F Sharp" id="custom-f#">F#</button><button aria-label="custom color for note G" id="custom-g">G</button><button aria-label="custom color for note G Sharp" id="custom-g#">G#</button>
         </div>
 
-        <div id="shortcuts">
-            </br>
-            <h5 style="text-align: left;">Keyboard shortcuts:</h5>
-            <ul>
-                <li><span>'esc'</span> = exit</li>
-                <li><span>'spacebar'</span> = play/pause tone generator</li>
-                <li><span>'return'</span> = start/stop color system</li>
-                <li><span>'d'</span> = show/hide details</li>
-                <li><span>'up/right arrow'</span> = increase tone</li>
-                <li><span>'down/left arrow'</span> = decrease tone</li>
-            </ul>
-        </div>
-
-        <!-- </br></br>
-        <button id="exit-button" aria-label="Exit">Exit</button> -->
-
         <div id="noise-details">
+            </br></br>
             <p>dB: <span id="db">0</span></p>
             <p>Frequency: <span id="freq">•</span></p>
             <p>Note: <span id="note">•</span></p>
@@ -78,18 +63,31 @@
                     <span id="sharp">cents &#9839;</span>
                 </div>
             </div> -->
-
-            </br>
             <!-- <p>Waveform:</p> -->
             <!-- <canvas id="waveform" width="512" height="256" transform="scale(0.5)"></canvas> -->
             <!-- </br></br> -->
-            <button id="tone-generator" aria-label="Play Tone Generator" href="">Play Tone Generator</button>
+            <!-- <button id="tone-generator" aria-label="Play Tone Generator" href="">Play Tone Generator</button>
             </br></br></br></br>
-            <!-- <input type="range" id="tone-slider" min="40" max="1500" step="1" value="230"/> -->
             <div id="tone-slider">
                 <div id="custom-handle" class="ui-slider-handle"></div>
-            </div>
+            </div> -->
         </div>
+
+        <div id="shortcuts">
+            </br>
+            <h5 style="text-align: left;">Keyboard shortcuts:</h5>
+            <ul>
+                <li><span>'esc'</span> = exit</li>
+                <li><span>'return'</span> = start/stop color system</li>
+                <li><span>'space'</span> = show/hide details</li>
+                <!-- <li><span>'spacebar'</span> = play/pause tone generator</li>
+                <li><span>'up/right arrow'</span> = increase tone</li>
+                <li><span>'down/left arrow'</span> = decrease tone</li> -->
+            </ul>
+        </div>
+
+        <!-- </br></br>
+        <button id="exit-button" aria-label="Exit">Exit</button> -->
 
     </div>
 </div>
@@ -214,25 +212,25 @@
                     toggleDisplay();
                 break;
 
-                case 37: // left
-                case 40: // down
-                    var newValue = slider.slider("value") - (e.shiftKey ? 5 : 1);
-                    slider.slider("value", newValue);
-                    slide(newValue);
-                break;
-
-                case 39: // right
-                case 38: // up
-                    var newValue = slider.slider("value") + (e.shiftKey ? 5 : 1);
-                    slider.slider("value", newValue);
-                    slide(newValue);
-                break;
+                // case 37: // left
+                // case 40: // down
+                //     var newValue = slider.slider("value") - (e.shiftKey ? 5 : 1);
+                //     slider.slider("value", newValue);
+                //     slide(newValue);
+                // break;
+                //
+                // case 39: // right
+                // case 38: // up
+                //     var newValue = slider.slider("value") + (e.shiftKey ? 5 : 1);
+                //     slider.slider("value", newValue);
+                //     slide(newValue);
+                // break;
+                //
+                // case 32: // space
+                //     $("#tone-generator").click();
+                // break;
 
                 case 32: // space
-                    $("#tone-generator").click();
-                break;
-
-                case 68: // 'd' key
                     ($("#details-view:hidden").hide().length == 1) ? $("#details-view").show() : $("#details-view").hide();
                 break;
             }
