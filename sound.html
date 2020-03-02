@@ -66,11 +66,11 @@
             <!-- <p>Waveform:</p> -->
             <!-- <canvas id="waveform" width="512" height="256" transform="scale(0.5)"></canvas> -->
             <!-- </br></br> -->
-            <button id="tone-generator" aria-label="Play Tone Generator" href="">Play Tone Generator</button>
+            <!-- <button id="tone-generator" aria-label="Play Tone Generator" href="">Play Tone Generator</button>
             </br></br></br></br>
             <div id="tone-slider">
                 <div id="custom-handle" class="ui-slider-handle"></div>
-            </div>
+            </div> -->
         </div>
 
         <div id="shortcuts">
@@ -80,9 +80,9 @@
                 <li><span>'esc'</span> = exit</li>
                 <li><span>'return'</span> = start/stop color system</li>
                 <li><span>'space'</span> = show/hide details</li>
-                <li><span>'spacebar'</span> = play/pause tone generator</li>
+                <!-- <li><span>'spacebar'</span> = play/pause tone generator</li>
                 <li><span>'up/right arrow'</span> = increase tone</li>
-                <li><span>'down/left arrow'</span> = decrease tone</li>
+                <li><span>'down/left arrow'</span> = decrease tone</li> -->
             </ul>
         </div>
 
@@ -212,23 +212,23 @@
                     toggleDisplay();
                 break;
 
-                case 37: // left
-                case 40: // down
-                    var newValue = slider.slider("value") - (e.shiftKey ? 5 : 1);
-                    slider.slider("value", newValue);
-                    slide(newValue);
-                break;
-                
-                case 39: // right
-                case 38: // up
-                    var newValue = slider.slider("value") + (e.shiftKey ? 5 : 1);
-                    slider.slider("value", newValue);
-                    slide(newValue);
-                break;
-                
-                case 32: // space
-                    $("#tone-generator").click();
-                break;
+                // case 37: // left
+                // case 40: // down
+                //     var newValue = slider.slider("value") - (e.shiftKey ? 5 : 1);
+                //     slider.slider("value", newValue);
+                //     slide(newValue);
+                // break;
+                //
+                // case 39: // right
+                // case 38: // up
+                //     var newValue = slider.slider("value") + (e.shiftKey ? 5 : 1);
+                //     slider.slider("value", newValue);
+                //     slide(newValue);
+                // break;
+                //
+                // case 32: // space
+                //     $("#tone-generator").click();
+                // break;
 
                 case 32: // space
                     ($("#details-view:hidden").hide().length == 1) ? $("#details-view").show() : $("#details-view").hide();
