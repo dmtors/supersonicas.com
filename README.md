@@ -1,1 +1,5 @@
-# seesound.org
+# https://supersonicas.com
+
+Supersonicas is an exploration to enable accessibility to sound through light and color, particularly for people experiencing hearing impairment. Like any form of art, there is not one defined interpretation, but an opportunity for each participant to experience something new or familiar in their own way. The color and brightness of light corresponds to frequencies being heard in the room and changes accordingly. The color patterns created are inspired by research conducted around Chromesthesia, emotion, chakras, adolescence, and monochromacy.
+
+The color patterns created are inspired by research conducted around how the mind connects sound to color (through symptoms of Chromesthesia), how the heart connects sound to color (through feelings of emotion), how the body connects sound to color (through the energy of chakras), how a child connects sound to color (through adolescent experiences), and how someone experiencing color-blindness and Chromesthesia connects sound to color.
